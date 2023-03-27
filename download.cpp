@@ -43,16 +43,17 @@ class progress_bar{
             return numb;
         }
 
-        void print_bar( const std::string str, const int perc, int sz ){
+        void print_bar( const std::string name, const int perc, int sz ){
             std::cout << "\r\033[K";
             std::string progress = " [" + std::string( perc, '*' ) + std::string( sz - perc, ' ' ) + "]";
-            std::cout << str << "\t"<< progress << "\033[F";
+            int blank = screen_width( ) - name.size( ) - ( sz + 3 );
+            std::cout << name << std::string( blank, ' ' ) << progress << "\033[F";
         }
 
-        void bar( const std::string &str, const int sz ){
+        void bar( const std::string &name, const int sz ){
             for( int i = 0; i <= sz; i++ ){
                 std::cout << std::endl;
-                print_bar( str, i, sz );
+                print_bar( name, i, sz );
                 usleep( 10000 );
             }
         }
@@ -76,7 +77,6 @@ int main( int argc, char *argv[ ] ){
     p.start( );
     std::cout << "\033\e[?25h";
     std::cout << std::endl << std::endl;
-
-	return 0;
+    return 0;
 }
 
