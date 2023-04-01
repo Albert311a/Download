@@ -60,7 +60,7 @@ class progress_bar{
 
         void start( ){
             int k = screen_width( );
-            for( int i = 0; i < 10; i++ ){
+            for( int i = 0; i < vs.size( ); i++ ){
                 std::string v = vs[ i ];
                 bar( v, k * .5 );
                 std::cout << "\033[F";
